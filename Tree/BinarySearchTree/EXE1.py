@@ -62,8 +62,47 @@ class BinarySearchTree:
         elements.append(self.data)
 
         return elements
+    #Deleting value using right subtree min mum value as it copy
+    # def delete(self, val):
+    #     if val < self.data:
+    #         if self.left:
+    #             self.left.delete(val)
+    #     elif val > self.data:
+    #         if self.right:
+    #             self.right.delete(val)
+    #     else:
+    #         if self.left is None and self.right is None:
+    #             return None
+    #         elif self.left is None:
+    #             return self.right
+    #         elif self.right is None:
+    #             return self.right
+    #         min_val = self.right.find_min()
+    #         self.data = min_val
+    #         self.right = self.right.delete(min_val)
+    #
+    #     return self
 
+    # Deletig using left subtree using its maximum vale
+    def delete(self, val):
+        if val < self.data:
+            if self.left:
+                self.left = self.left.delete(val)
+        elif val > self.data:
+            if self.right:
+                self.right= self.right.delete(val)
+        else:
+            if self.left is None and self.right is None:
+                return None
+            elif self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.right
+            min_val = self.left.find_max()
+            self.data = min_val
+            self.left = self.left.delete(min_val)
 
+        return self
 
 
 def build_tree(element):
@@ -77,4 +116,6 @@ numbers = [15,12,7,14,27,20,23,88 ]
 traversal = build_tree(numbers)
 print(traversal.find_min())
 print(traversal.calculate_sum())
+print(traversal.post_traversal())
+traversal.delete(27)
 print(traversal.post_traversal())
