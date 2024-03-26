@@ -49,3 +49,5 @@ number_to_find = 21
 
 index = binary_search_recursive(numbers_list, number_to_find, 0, len(numbers_list))
 print(f"Number found at index {index} using binary search")
+
+
